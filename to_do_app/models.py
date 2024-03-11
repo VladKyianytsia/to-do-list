@@ -4,6 +4,9 @@ from django.db import models
 class Tag(models.Model):
     name = models.CharField(max_length=65)
 
+    def __str__(self):
+        return self.name
+
 
 class Task(models.Model):
     content = models.TextField()
@@ -14,3 +17,6 @@ class Task(models.Model):
 
     class Meta:
         ordering = ("done", "-created_at")
+
+    def __str__(self):
+        return self.content

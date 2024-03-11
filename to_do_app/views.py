@@ -1,4 +1,5 @@
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -8,6 +9,7 @@ from to_do_app.models import Task, Tag
 
 class TaskListView(generic.ListView):
     model = Task
+    queryset = Task.objects.prefetch_related("tags")
     paginate_by = 4
 
 
@@ -29,14 +31,8 @@ class TaskDeleteView(generic.DeleteView):
 
 
 def toggle_task_completion(request: HttpRequest, pk: int) -> HttpResponse:
-    task = Task.objects.get(pk=pk)
-
-    if task.done:
-        task.done = False
-
-    else:
-        task.done = True
-
+    task = get_object_or_404(Task, pk=pk)
+    task.done = not task.done
     task.save()
     return HttpResponseRedirect(reverse_lazy("to_do_app:task-list"))
 

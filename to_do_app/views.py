@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 from to_do_app.forms import TaskForm
-from to_do_app.models import Task
+from to_do_app.models import Task, Tag
 
 
 class TaskListView(generic.ListView):
@@ -38,4 +38,8 @@ def toggle_task_completion(request: HttpRequest, pk: int) -> HttpResponse:
 
     task.save()
     return HttpResponseRedirect(reverse_lazy("to_do_app:task-list"))
+
+
+class TagListView(generic.ListView):
+    model = Tag
 

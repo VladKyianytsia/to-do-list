@@ -10,14 +10,29 @@
   <ul class="list-group list-group-flush">
     {% for task in task_list %}
       <li class="list-group-item">
-        <h3>{{ task.content }}</h3>
-        <p>Created: {{ task.created_at }}</p>
-        <h6>
-          Tags:
+        <h5>
+          {{ task.content }}
+          {% if task.done %}
+            <span class="badge bg-success">Done</span>
+          {% else %}
+            <span class="badge bg-danger">Not Done</span>
+          {% endif %}
+        </h5>
+        <p>
+          Created: {{ task.created_at }} 
+          {% if task.deadline %}
+            Deadline: {{ task.deadline }}
+          {% endif %}
+        </p>
+        
+        <p>
+          <strong>
+            Tags:
+          </strong>
           {% for tag in task.tags.all %}
             {{ tag.name }}
-          {% endfor %}  
-        </h6>
+          {% endfor %}
+        </p>
       </li>
     {% endfor %}
   </ul>

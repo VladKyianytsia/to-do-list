@@ -30,6 +30,7 @@ class TaskDeleteView(generic.DeleteView):
 
 def toggle_task_completion(request: HttpRequest, pk: int) -> HttpResponse:
     task = Task.objects.get(pk=pk)
+
     if task.done:
         task.done = False
 

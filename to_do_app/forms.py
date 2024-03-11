@@ -19,8 +19,10 @@ class TaskForm(forms.ModelForm):
 
     def clean_deadline(self):
         deadline = self.cleaned_data["deadline"]
+
         if deadline and deadline <= datetime.date.today():
             raise forms.ValidationError("Invalid Date")
+
         return deadline
 
     class Meta:

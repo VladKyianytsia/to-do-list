@@ -33,7 +33,11 @@
             {{ tag.name }}
           {% endfor %}
         </p>
-        <a href="{% url "to_do_app:task-update" pk=task.id %}">Update</a>
+        <p>
+          <a href="{% url "to_do_app:task-update" pk=task.id %}">Update</a>
+          <a href="{% url "to_do_app:task-delete" pk=task.id %}">Delete</a>
+        </p>
+        
       </li>
     {% endfor %}
   </ul>

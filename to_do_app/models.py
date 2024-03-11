@@ -13,4 +13,4 @@ class Task(models.Model):
     tags = models.ManyToManyField(Tag, blank=True)
 
     class Meta:
-        ordering = ("done",)
+        ordering = ("done", "-created_at")

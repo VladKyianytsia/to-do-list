@@ -7,4 +7,18 @@
       Create New Task
     </a>
   </h1>
+  <ul class="list-group list-group-flush">
+    {% for task in task_list %}
+      <li class="list-group-item">
+        <h3>{{ task.content }}</h3>
+        <p>Created: {{ task.created_at }}</p>
+        <h6>
+          Tags:
+          {% for tag in task.tags.all %}
+            {{ tag.name }}
+          {% endfor %}  
+        </h6>
+      </li>
+    {% endfor %}
+  </ul>
 {% endblock %}

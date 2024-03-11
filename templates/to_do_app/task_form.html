@@ -5,6 +5,7 @@
   <div style="width: 500px" class="container">
     <h1>Create Task</h1>
     <form method="post">
+      {% csrf_token %}
       {{ form|crispy }}
       <br>
       <input class="btn btn-success" type="submit" value="Submit">

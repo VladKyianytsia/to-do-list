@@ -2,7 +2,7 @@
 
 {% block content %}
   <h1>
-    Task List:
+    Task List
     <a style="float: right" class="btn btn-primary" href="{% url "to_do_app:task-create" %}">
       Add Task
     </a>
@@ -14,8 +14,10 @@
           {{ task.content }}
           {% if task.done %}
             <span class="badge bg-success">Done</span>
+            <a style="float:right;" class="btn btn-secondary" href="{% url "to_do_app:toggle-task-completion" pk=task.id %}">Undo</a>
           {% else %}
             <span class="badge bg-danger">Not Done</span>
+            <a style="float:right;" class="btn btn-success" href="{% url "to_do_app:toggle-task-completion" pk=task.id %}">Complete</a>
           {% endif %}
         </h5>
         <p>
@@ -36,11 +38,6 @@
         <p>
           <a href="{% url "to_do_app:task-update" pk=task.id %}">Update</a>
           <a href="{% url "to_do_app:task-delete" pk=task.id %}">Delete</a>
-          {% if task.done %}
-            <a href="{% url "to_do_app:toggle-task-completion" pk=task.id %}">Undo</a>
-          {% else %}
-            <a href="{% url "to_do_app:toggle-task-completion" pk=task.id %}">Complete</a>
-          {% endif %}
         </p>
         
       </li>

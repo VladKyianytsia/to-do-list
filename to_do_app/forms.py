@@ -1,9 +1,20 @@
 from django import forms
 
-from to_do_app.models import Task
+from to_do_app.models import Task, Tag
 
 
 class TaskForm(forms.ModelForm):
+    deadline = forms.DateField(
+        widget=forms.DateInput(
+            attrs={"type": "date"}
+        ),
+        required=False
+    )
+    tags = forms.ModelMultipleChoiceField(
+        queryset=Tag.objects.all(),
+        widget=forms.CheckboxSelectMultiple
+    )
+
     class Meta:
         model = Task
         fields = (
@@ -11,9 +22,3 @@ class TaskForm(forms.ModelForm):
             "deadline",
             "tags",
         )
-        widgets = {
-            "deadline": forms.DateInput(
-                attrs={"type": "date"}
-            ),
-            "tags": forms.CheckboxSelectMultiple()
-        }

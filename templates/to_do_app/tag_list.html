@@ -17,7 +17,7 @@
       <tr>
         <td>{{ tag }}</td>
         <td>
-          <a class="btn btn-secondary" href="#">Update</a>
+          <a class="btn btn-secondary" href="{% url "to_do_app:tag-update" pk=tag.id %}">Update</a>
         </td>
         <td>
           <a class="btn btn-secondary" href="#">Delete</a>

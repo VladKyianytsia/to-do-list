@@ -9,6 +9,7 @@ from to_do_app.models import Task, Tag
 
 class TaskListView(generic.ListView):
     model = Task
+    paginate_by = 4
 
 
 class TaskCreateView(generic.CreateView):
@@ -42,6 +43,7 @@ def toggle_task_completion(request: HttpRequest, pk: int) -> HttpResponse:
 
 class TagListView(generic.ListView):
     model = Tag
+    paginate_by = 5
 
 
 class TagCreateView(generic.CreateView):

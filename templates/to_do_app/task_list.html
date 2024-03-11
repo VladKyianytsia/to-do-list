@@ -4,7 +4,7 @@
   <h1>
     Task List:
     <a style="float: right" class="btn btn-primary" href="{% url "to_do_app:task-create" %}">
-      Create New Task
+      Add Task
     </a>
   </h1>
   <ul class="list-group list-group-flush">
@@ -21,7 +21,7 @@
         <p>
           Created: {{ task.created_at }} 
           {% if task.deadline and not task.done %}
-            Deadline: {{ task.deadline }}
+           | Deadline: {{ task.deadline }}
           {% endif %}
         </p>
         
@@ -46,4 +46,5 @@
       </li>
     {% endfor %}
   </ul>
+  {% include "includes/pagination.html" %}
 {% endblock %}

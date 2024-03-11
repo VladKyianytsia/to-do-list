@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Tag(models.Model):
-    name = models.CharField(max_length=65)
+    name = models.CharField(max_length=65, unique=True)
 
     def __str__(self):
         return self.name
@@ -13,7 +13,7 @@ class Task(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     deadline = models.DateField(blank=True, null=True)
     done = models.BooleanField(default=False)
-    tags = models.ManyToManyField(Tag, blank=True, related_name="tasks")
+    tags = models.ManyToManyField(Tag, related_name="tasks")
 
     class Meta:
         ordering = ("done", "-created_at")

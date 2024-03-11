@@ -20,7 +20,7 @@
         </h5>
         <p>
           Created: {{ task.created_at }} 
-          {% if task.deadline %}
+          {% if task.deadline and not task.done %}
             Deadline: {{ task.deadline }}
           {% endif %}
         </p>
@@ -36,6 +36,11 @@
         <p>
           <a href="{% url "to_do_app:task-update" pk=task.id %}">Update</a>
           <a href="{% url "to_do_app:task-delete" pk=task.id %}">Delete</a>
+          {% if task.done %}
+            <a href="{% url "to_do_app:toggle-task-completion" pk=task.id %}">Undo</a>
+          {% else %}
+            <a href="{% url "to_do_app:toggle-task-completion" pk=task.id %}">Complete</a>
+          {% endif %}
         </p>
         
       </li>

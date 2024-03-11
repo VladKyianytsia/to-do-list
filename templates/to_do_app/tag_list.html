@@ -3,7 +3,9 @@
 {% block content %}
   <h1>
     Tags:
-    <a class="btn btn-primary" href="#">Add</a>
+    <a style="float: right" class="btn btn-primary" href="{% url "to_do_app:tag-create" %}">
+      Add
+    </a>
   </h1>
   <table class="table">
     <tr>

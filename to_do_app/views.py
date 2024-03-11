@@ -43,3 +43,8 @@ def toggle_task_completion(request: HttpRequest, pk: int) -> HttpResponse:
 class TagListView(generic.ListView):
     model = Tag
 
+
+class TagCreateView(generic.CreateView):
+    model = Tag
+    fields = "__all__"
+    success_url = reverse_lazy("to_do_app:tag-list")

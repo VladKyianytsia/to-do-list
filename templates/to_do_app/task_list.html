@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Task List:</h1>
+  <h1>
+    Task List:
+    <a style="float: right" class="btn btn-primary" href="{% url "to_do_app:task-create" %}">
+      Create New Task
+    </a>
+  </h1>
 {% endblock %}
